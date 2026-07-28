@@ -1,0 +1,44 @@
+# Maintainer: Alexey Gladkov <gladkov.alexey@gmail.com>
+
+pkgname=wldm
+pkgver=2
+pkgrel=1
+pkgdesc="Display Manager for Wayland"
+arch=('any')
+url="https://github.com/legionus/libshell"
+license=('GPL-2.0-or-later')
+depends=(
+	python
+	python-dbus
+	python-gobject
+	python-setproctitle
+)
+makedepends=(
+	make
+	python
+	python-pip
+	python-setuptools
+)
+conflicts=(
+	gdm
+)
+source=(https://github.com/legionus/$pkgname/archive/refs/tags/v$pkgver.tar.gz)
+sha256sums=('340c53ef5058199def9cb0089b3ed982f790fdea2ad6b593b3a9e163d518bbe9')
+
+package() {
+	cd "$srcdir/$pkgname-$pkgver"
+	make install \
+		DESTDIR="$pkgdir" \
+		BINDIR=/usr/bin \
+		GREETER_USER=wldm \
+		GREETER_GROUP=wldm \
+		DBUS_USER=wldm \
+		#
+
+	cd "$pkgdir"
+
+	install -Dm644 /dev/stdin usr/lib/sysusers.d/wldm.conf <<-EOF
+	g wldm 120
+	u wldm 120:120 "User for WLDM Greeter"
+	EOF
+}

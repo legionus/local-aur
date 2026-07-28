@@ -1,0 +1,18 @@
+pkgbase = make-initrd
+	pkgdesc = Uevent-driven initramfs infrastructure based around udev
+	pkgver = 2.59.0
+	pkgrel = 1
+	url = https://github.com/osboot/make-initrd
+	arch = any
+	license = GPL-3.0-or-later
+	makedepends = scdoc
+	depends = bzip2
+	depends = json-c
+	depends = libshell
+	depends = xz
+	depends = zlib
+	depends = zstd
+	source = https://github.com/osboot/make-initrd/releases/download/2.59.0/make-initrd-2.59.0.tar.xz
+	sha256sums = 65c23427e5200ffb251a57fe311b9d0d99d2ffd246418360a85514cff0a77d41
+
+pkgname = make-initrd

@@ -1,0 +1,13 @@
+pkgbase = libshell
+	pkgdesc = The libshell is a set of the most commonly-used shell functions
+	pkgver = 0.5.0
+	pkgrel = 1
+	url = https://github.com/legionus/libshell
+	arch = any
+	license = GPL-2.0-or-later
+	makedepends = make
+	makedepends = scdoc
+	source = https://github.com/legionus/libshell/releases/download/v0.5.0/libshell-0.5.0.tar.xz
+	sha256sums = cd34a15cae8bdf61d7c8b32ee03611e3f18290eafc0139fd8b06d3248d596ca4
+
+pkgname = libshell

@@ -1,0 +1,32 @@
+# Maintainer: Alexey Gladkov <gladkov.alexey@gmail.com>
+
+pkgname=passwdqc
+pkgver=2.1.0
+pkgrel=1
+pkgdesc="password/passphrase strength checking and enforcement"
+arch=('any')
+url="http://www.openwall.com/passwdqc/"
+license=('BSD' 'custom:BSD Revised')
+source=(http://www.openwall.com/passwdqc/$pkgname-$pkgver.tar.gz)
+sha256sums=('52fa12271104e74126145c6224b22b4a8dd32cc47de04c1e9fb8f348340df4d2')
+
+pkgver() {
+	curl -sL https://openwall.com/passwdqc/ | grep -o '<a href="passwdqc-.*\.tar\.gz">.*</a>' | sed -n 's/.*>\(.*\)<.*/\1/p' |
+		grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+'
+}
+
+build() {
+	cd "$srcdir/$pkgname-$pkgver"
+
+	sed "s#@VERSION@#${pkgver}#" $pkgname.pc.in >$pkgname.pc
+	make -j
+}
+
+package() {
+	cd "$srcdir/$pkgname-$pkgver"
+
+	mkdir -p "$pkgdir/usr/share/licenses/$pkgname"
+	cp "$srcdir/$pkgname-$pkgver/LICENSE" "$pkgdir/usr/share/licenses/$pkgname"
+
+	make SHARED_LIBDIR="/usr/lib" DESTDIR="$pkgdir/" install_wrapped
+}

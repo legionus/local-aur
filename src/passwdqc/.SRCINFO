@@ -1,0 +1,12 @@
+pkgbase = passwdqc
+	pkgdesc = password/passphrase strength checking and enforcement
+	pkgver = 2.1.0
+	pkgrel = 1
+	url = http://www.openwall.com/passwdqc/
+	arch = any
+	license = BSD
+	license = custom:BSD Revised
+	source = http://www.openwall.com/passwdqc/passwdqc-2.1.0.tar.gz
+	sha256sums = 52fa12271104e74126145c6224b22b4a8dd32cc47de04c1e9fb8f348340df4d2
+
+pkgname = passwdqc

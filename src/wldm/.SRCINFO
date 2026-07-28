@@ -1,0 +1,20 @@
+pkgbase = wldm
+	pkgdesc = Display Manager for Wayland
+	pkgver = 2
+	pkgrel = 1
+	url = https://github.com/legionus/libshell
+	arch = any
+	license = GPL-2.0-or-later
+	makedepends = make
+	makedepends = python
+	makedepends = python-pip
+	makedepends = python-setuptools
+	depends = python
+	depends = python-dbus
+	depends = python-gobject
+	depends = python-setproctitle
+	conflicts = gdm
+	source = https://github.com/legionus/wldm/archive/refs/tags/v2.tar.gz
+	sha256sums = 340c53ef5058199def9cb0089b3ed982f790fdea2ad6b593b3a9e163d518bbe9
+
+pkgname = wldm

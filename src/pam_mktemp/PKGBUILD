@@ -1,0 +1,24 @@
+# Maintainer: Alexey Gladkov <gladkov.alexey@gmail.com>
+
+pkgname=pam_mktemp
+pkgver=1.1.1
+pkgrel=1
+pkgdesc="Pluggable private /tmp space support for interactive (shell) sessions"
+arch=('any')
+url="http://www.openwall.com/passwdqc/"
+license=('BSD' 'custom:BSD Revised')
+source=(https://download.openwall.net/pub/projects/pam/modules/$pkgname/$pkgname-$pkgver.tar.gz)
+sha256sums=('66cf80c18439ca3456db96402f2eeac14b1a0503cc1d1be7f2b16d5f079f3f3d')
+
+build() {
+	cd "$srcdir/$pkgname-$pkgver"
+	make -j
+}
+
+package() {
+	cd "$srcdir/$pkgname-$pkgver"
+	make install \
+		DESTDIR="$pkgdir/" \
+		SECUREDIR=/usr/lib/security \
+		#
+}

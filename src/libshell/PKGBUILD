@@ -1,0 +1,30 @@
+# Maintainer: Alexey Gladkov <gladkov.alexey@gmail.com>
+
+pkgname=libshell
+pkgver=0.5.0
+pkgrel=1
+pkgdesc="The libshell is a set of the most commonly-used shell functions"
+arch=('any')
+url="https://github.com/legionus/libshell"
+license=('GPL-2.0-or-later')
+makedepends=(
+	make
+	scdoc
+)
+source=(
+	https://github.com/legionus/libshell/releases/download/v$pkgver/libshell-$pkgver.tar.xz
+)
+sha256sums=(
+	'cd34a15cae8bdf61d7c8b32ee03611e3f18290eafc0139fd8b06d3248d596ca4'
+)
+
+build() {
+	cd "${pkgname}-${pkgver}"
+	sed -i -e 's,^#!/bin/ash,#!/bin/sh,' utils/cgrep.in
+	make
+}
+
+package() {
+	cd "${pkgname}-${pkgver}"
+	make DESTDIR="${pkgdir}" bindir=/usr/bin install
+}

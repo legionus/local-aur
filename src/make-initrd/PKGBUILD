@@ -1,0 +1,63 @@
+# Maintainer: Alexey Gladkov <gladkov.alexey@gmail.com>
+
+pkgname=make-initrd
+pkgver=2.59.0
+pkgrel=1
+pkgdesc="Uevent-driven initramfs infrastructure based around udev"
+arch=('any')
+url="https://github.com/osboot/make-initrd"
+license=('GPL-3.0-or-later')
+depends=(
+	bzip2
+	cpio
+	json-c
+	libshell
+	make
+	xz
+	zlib
+	zstd
+)
+makedepends=(
+	scdoc
+)
+source=(
+	https://github.com/osboot/make-initrd/releases/download/$pkgver/make-initrd-$pkgver.tar.xz
+)
+sha256sums=(
+	'65c23427e5200ffb251a57fe311b9d0d99d2ffd246418360a85514cff0a77d41'
+)
+backup=('etc/initrd.mk')
+
+prepare() {
+	cd "${pkgname}-${pkgver}"
+	autoreconf -if
+}
+
+build() {
+	cd "${pkgname}-${pkgver}"
+	./configure \
+		--prefix=/usr \
+		--bindir=/usr/bin \
+		--sbindir=/usr/bin \
+		--sysconfdir=/etc \
+		--with-bootdir=/boot \
+		--with-runtimedir=/usr/lib/initramfs \
+		--libexecdir=/usr/libexec \
+		--with-imagename='initramfs-$(KERNEL)$(IMAGE_SUFFIX).img' \
+		--with-busybox \
+		--without-libshell \
+		--with-libelf \
+		--with-zlib \
+		--with-bzip2 \
+		--with-lzma \
+		--with-zstd \
+		--with-json-c \
+		--with-scdoc \
+		#
+	make
+}
+
+package() {
+	cd "${pkgname}-${pkgver}"
+	make install DESTDIR="${pkgdir}"
+}
