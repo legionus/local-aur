@@ -1,0 +1,20 @@
+pkgbase = semindex
+	pkgdesc = semantic indexer for the C programming language
+	pkgver = 0
+	pkgrel = 1
+	url = https://github.com/legionus/semindex
+	arch = x86_64
+	license = GPL-2.0-or-later
+	makedepends = clang>=21.0
+	makedepends = cmake>=3.13
+	makedepends = libgit2
+	makedepends = llvm>=21.0
+	makedepends = sqlite
+	depends = clang>=21.0
+	depends = libgit2
+	depends = llvm-libs>=21.0
+	depends = sqlite
+	source = semindex-0.tar.gz::https://github.com/legionus/semindex/archive/refs/heads/master.tar.gz
+	sha256sums = SKIP
+
+pkgname = semindex
