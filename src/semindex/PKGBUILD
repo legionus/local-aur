@@ -1,7 +1,7 @@
 # Maintainer: Alexey Gladkov <gladkov.alexey@gmail.com>
 
 pkgname=semindex
-pkgver=0
+pkgver=1.0.0
 pkgrel=1
 pkgdesc='semantic indexer for the C programming language'
 arch=('x86_64')
@@ -21,21 +21,21 @@ depends=(
 	'llvm-libs>=21.0'
 	'sqlite'
 )
-source=("${pkgname}-${pkgver}.tar.gz::https://github.com/legionus/semindex/archive/refs/heads/master.tar.gz")
-sha256sums=('SKIP')
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz")
+sha256sums=('4c6a5a564ae2987359929a82e25951a3b2be218d9f6eac8bcbfc7095eddb6c18')
 
 build() {
-	cd "$pkgname-master"
+	cd "$pkgname-${pkgver}"
 	cmake -S . -B _build
 	cmake --build _build
 }
 
 check() {
-	cd "$pkgname-master"
+	cd "$pkgname-${pkgver}"
 	ctest --test-dir _build --output-on-failure
 }
 
 package() {
-	cd "$pkgname-master"
+	cd "$pkgname-${pkgver}"
 	cmake --install _build --prefix "$pkgdir/usr"
 }
