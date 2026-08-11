@@ -4,3 +4,6 @@
 [submodule "courier-unicode"]
 	path = src/courier-unicode
 	url = https://aur.archlinux.org/courier-unicode.git
+[submodule "swaykbdd"]
+	path = src/swaykbdd
+	url = https://aur.archlinux.org/swaykbdd.git
