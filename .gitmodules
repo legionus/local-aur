@@ -1,0 +1,6 @@
+[submodule "courier-maildrop-minimal"]
+	path = src/courier-maildrop-minimal
+	url = https://aur.archlinux.org/courier-maildrop-minimal.git
+[submodule "courier-unicode"]
+	path = src/courier-unicode
+	url = https://aur.archlinux.org/courier-unicode.git

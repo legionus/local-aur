@@ -36,7 +36,7 @@ repo:
 $(PKGS):
 	@echo "processing $@ ..."
 	@unshare --setuid=$$(id -u $(USER)) --wd="$@" -- \
-	 makepkg --ignorearch --syncdeps --cleanbuild --force --sign --key $(GPGKEY)
+	 makepkg --skippgpcheck --syncdeps --cleanbuild --force --sign --key $(GPGKEY)
 	@rm -rf -- "$@/src" "$@/pkg"
 
 $(SRCINFO):
