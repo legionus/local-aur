@@ -1,0 +1,29 @@
+# Maintainer: Alexey Gladkov <gladkov.alexey@gmail.com>
+
+pkgname=procmail-rs
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Mail processing and sorting program"
+arch=('x86_64' 'aarch64')
+url="https://github.com/legionus/procmail-rs"
+license=('MIT')
+source=(
+	"procmail-${pkgver}.tar.gz::https://github.com/legionus/${pkgname}/archive/refs/tags/v${pkgver}.tar.gz"
+)
+sha256sums=('570f3c9fa5fed569ae0211c99688475568d6b0ad1860fb28feafa22d31079ec0')
+
+prepare() {
+	cd $pkgname-$pkgver
+}
+
+build() {
+	cd $pkgname-$pkgver
+	make build-release
+}
+
+package() {
+	cd $pkgname-$pkgver
+	make install \
+		DESTDIR="$pkgdir" \
+		PREFIX=/usr
+}
