@@ -7,6 +7,3 @@
 [submodule "swaykbdd"]
 	path = src/swaykbdd
 	url = https://aur.archlinux.org/swaykbdd.git
-[submodule "flyline"]
-	path = src/flyline
-	url = https://aur.archlinux.org/flyline.git
