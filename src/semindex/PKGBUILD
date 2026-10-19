@@ -2,40 +2,47 @@
 
 pkgname=semindex
 pkgver=1.0.0
-pkgrel=1
+pkgrel=3
 pkgdesc='semantic indexer for the C programming language'
 arch=('x86_64')
 license=('GPL-2.0-or-later')
 url='https://github.com/legionus/semindex'
 
+realver="${pkgver}"
+realver="master"
+
 makedepends=(
-	'clang>=21.0'
+	'clang>=23.0'
 	'cmake>=3.13'
 	'libgit2'
-	'llvm>=21.0'
+	'llvm>=23.0'
 	'sqlite'
 )
 depends=(
-	'clang>=21.0'
+	'clang>=23.0'
 	'libgit2'
-	'llvm-libs>=21.0'
+	'llvm-libs>=23.0'
 	'sqlite'
 )
-source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz")
-sha256sums=('4c6a5a564ae2987359929a82e25951a3b2be218d9f6eac8bcbfc7095eddb6c18')
+source=(
+	"${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/heads/${realver}.tar.gz"
+)
+sha256sums=(
+	'974e69ec59af8ef582ba9ee435660b95d9866d5023f6426093d42921e8e3b436'
+)
 
 build() {
-	cd "$pkgname-${pkgver}"
+	cd "$pkgname-$realver"
 	cmake -S . -B _build
 	cmake --build _build
 }
 
 check() {
-	cd "$pkgname-${pkgver}"
+	cd "$pkgname-$realver"
 	ctest --test-dir _build --output-on-failure
 }
 
 package() {
-	cd "$pkgname-${pkgver}"
+	cd "$pkgname-$realver"
 	cmake --install _build --prefix "$pkgdir/usr"
 }
