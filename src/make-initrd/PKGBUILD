@@ -1,7 +1,7 @@
 # Maintainer: Alexey Gladkov <gladkov.alexey@gmail.com>
 
 pkgname=make-initrd
-pkgver=2.59.0
+pkgver=2.61.0
 pkgrel=1
 pkgdesc="Uevent-driven initramfs infrastructure based around udev"
 arch=('any')
@@ -24,7 +24,7 @@ source=(
 	https://github.com/osboot/make-initrd/releases/download/$pkgver/make-initrd-$pkgver.tar.xz
 )
 sha256sums=(
-	'65c23427e5200ffb251a57fe311b9d0d99d2ffd246418360a85514cff0a77d41'
+	'2da1217756ed78e2430dc4cd7266b9e2796924f9864a93bbaa7ef43c09408aa1'
 )
 backup=('etc/initrd.mk')
 
